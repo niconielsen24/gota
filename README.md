@@ -17,8 +17,6 @@ Think of it like [`task`](https://taskfile.dev) or `make`, but with fewer featur
 
 ---
 
----
-
 ## 📌 Usage
 
 ```bash
@@ -28,8 +26,6 @@ gota list
 # Create a new CLI project
 gota create cli myapp
 ```
-
----
 
 ---
 
@@ -43,16 +39,14 @@ gota create cli myapp
 
 ---
 
----
-
 ### 📁 Example Template Layout
 
 Gota uses embedded .tpl files for scaffolding, like:
 
-> internal/templates/
-> ├── main.go.tpl
-> ├── mod.tpl
-> └── root.go.tpl
+internal/templates/
+├── main.go.tpl
+├── mod.tpl
+└── root.go.tpl
 
 ## These are bundled into the binary and rendered with Go's standard text/template.
 
@@ -82,10 +76,8 @@ Gota uses embedded .tpl files for scaffolding, like:
 
 ### 🔧 Future Ideas
 
-    Built-in support for build, test, lint, format
-
-    Auto-init gota.yaml
-
     Watch mode / file triggers
 
     More project types / templates
+
+    Actually run tasks
