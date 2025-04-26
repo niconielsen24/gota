@@ -17,19 +17,26 @@ var ListCmd = &cobra.Command{
 }
 
 func run_list(cmd *cobra.Command, args []string) {
-
 	file_bytes, err := os.ReadFile(task.TaskFileStr)
 	if err != nil {
-		cmd.PrintErrf("Error: %s\n", err)
+		cmd.PrintErrf("Error reading task file: %s\n", err)
+		return
 	}
 
 	tasks := &task.TaskFile{}
 	if err := yaml.Unmarshal(file_bytes, tasks); err != nil {
-		cmd.PrintErrf("Error: %s\n", err)
+		cmd.PrintErrf("Error parsing YAML: %s\n", err)
+		return
 	}
 
-	cmd.Println("Tasks :")
+	if len(tasks.Tasks) == 0 {
+		cmd.Println("No tasks defined.")
+		return
+	}
+
+	cmd.Println("\n📋 Available Tasks:")
+
 	for key, val := range tasks.Tasks {
-		cmd.Printf(" |> %s:\n\t%s\n", key, val.Desc)
+		cmd.Printf("  • %-15s →  %s\n", key, val.Desc)
 	}
 }
